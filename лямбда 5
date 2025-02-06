@@ -1,0 +1,9 @@
+def word_length_map(sentence: str) -> dict:
+    """Возвращает словарь, где ключи — слова, а значения — их длина."""
+    words = sentence.split()  # Разбиваем строку на слова
+    return dict(map(lambda word: (word, len(word)), words))
+
+# Тест
+input_data = "hello world this is Python"
+result = word_length_map(input_data)
+print(result)  # {'hello': 5, 'world': 5, 'this': 4, 'is': 2, 'Python': 6}

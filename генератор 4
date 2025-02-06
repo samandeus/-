@@ -1,0 +1,26 @@
+class WordLengthIterator:
+    def __init__(self, words):
+        self.words = words  # Сохраняем список слов
+        self.index = 0  # Текущий индекс
+
+    def __iter__(self):
+        return self  # Итератор возвращает сам себя
+
+    def __next__(self):
+        if self.index >= len(self.words):  # Если дошли до конца списка
+            raise StopIteration
+        length = len(self.words[self.index])  # Получаем длину текущего слова
+        self.index += 1  # Переходим к следующему слову
+        return length
+
+# Тест
+words = ['python', 'java', 'javascript', 'ruby']
+iterator = WordLengthIterator(words)
+
+for length in iterator:
+    print(length)  
+# Ожидаемый вывод:
+# 6 (длина 'python')
+# 4 (длина 'java')
+# 10 (длина 'javascript')
+# 4 (длина 'ruby')

@@ -1,0 +1,13 @@
+def group_by_type(input_list: list) -> dict:
+    """Разделяет элементы списка по их типам."""
+    result = {}  # Создаем пустой словарь
+
+    for item in input_list:
+        type_name = type(item).__name__  # Получаем название типа (например, "int", "str")
+        result.setdefault(type_name, []).append(item)  # Добавляем в соответствующий список
+
+    return result
+
+# Тест
+input_data = [1, "hello", 3.14, [1, 2, 3], "world", 42]
+print(group_by_type(input_data))

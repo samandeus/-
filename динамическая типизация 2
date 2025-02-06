@@ -1,0 +1,17 @@
+def group_by_type_recursive(input_list: list, result=None) -> dict:
+    """Разделяет элементы списка по их типам, включая вложенные списки."""
+    if result is None:
+        result = {}  # Создаем словарь только при первом вызове функции
+
+    for item in input_list:
+        if isinstance(item, list):  # Если элемент - список, обрабатываем его рекурсивно
+            group_by_type_recursive(item, result)
+        else:
+            type_name = type(item).__name__
+            result.setdefault(type_name, []).append(item)
+
+    return result
+
+# Тест с вложенным списком
+input_data = [1, "hello", [2, "world", 3.14], 42]
+print(group_by_type_recursive(input_data))

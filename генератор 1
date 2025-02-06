@@ -1,0 +1,18 @@
+def is_prime(num):
+    """Функция проверяет, является ли число простым."""
+    if num < 2:
+        return False
+    for i in range(2, int(num ** 0.5) + 1):  # Проверяем деление на числа до корня
+        if num % i == 0:
+            return False
+    return True
+
+def prime_generator(n):
+    """Генератор простых чисел меньше n."""
+    for num in range(2, n):
+        if is_prime(num):  # Если число простое, yield его
+            yield num
+
+# Тест генератора
+for prime in prime_generator(15):
+    print(prime)  # Ожидаемый вывод: 2, 3, 5, 7, 11, 13

@@ -1,0 +1,8 @@
+def square_generator(n):
+    """Генерирует квадраты чисел от 1 до n-1."""
+    for i in range(1, n):
+        yield i ** 2  # Возвращает квадрат числа
+
+# Тест
+for square in square_generator(6):
+    print(square)  # Ожидаемый вывод: 1, 4, 9, 16, 25

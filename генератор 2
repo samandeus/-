@@ -1,0 +1,19 @@
+class CycleIterator:
+    def __init__(self, iterable):
+        self.iterable = iterable  # Сохраняем список
+        self.index = 0  # Начальный индекс
+
+    def __iter__(self):
+        return self  # Итератор возвращает сам себя
+
+    def __next__(self):
+        if not self.iterable:  # Если список пустой
+            raise StopIteration
+        value = self.iterable[self.index]  # Берем текущий элемент
+        self.index = (self.index + 1) % len(self.iterable)  # Двигаемся по кругу
+        return value
+
+# Тест
+it = CycleIterator([1, 2, 3])
+for _ in range(7):
+    print(next(it))  # Ожидаемый вывод: 1, 2, 3, 1, 2, 3, 1

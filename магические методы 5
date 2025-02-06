@@ -1,0 +1,3 @@
+class Collection:
+    def __call__(self):
+        return [person.name for person in self.people]

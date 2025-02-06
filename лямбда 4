@@ -1,0 +1,14 @@
+from functools import reduce
+
+def sum_of_squares_of_even_numbers(numbers: list) -> int:
+    """Возвращает сумму квадратов четных чисел в списке."""
+    return reduce(
+        lambda x, y: x + y,  
+        map(lambda x: x ** 2,  
+            filter(lambda x: x % 2 == 0, numbers))
+    )
+
+# Тест
+input_data = [1, 2, 3, 4, 5]
+result = sum_of_squares_of_even_numbers(input_data)
+print(result)  # 20 (2^2 + 4^2 = 4 + 16)

@@ -1,0 +1,21 @@
+import time
+
+def measure_execution_time(func):
+    def wrapper(*args, **kwargs):
+        start_time = time.time()
+        result = func(*args, **kwargs)
+        end_time = time.time()
+        print(f"Function {func.__name__} took {end_time - start_time:.4f} seconds to execute")
+        return result
+    return wrapper
+
+@measure_execution_time
+def calculate_multiply(numbers):
+    tot = 1
+    for x in numbers:
+        tot *= x
+    return tot
+
+# Тест
+result = calculate_multiply([1, 2, 3, 4, 5])
+print("Result:", result)

@@ -1,16 +1,16 @@
 class CacheResult:
     def __init__(self, func):
-        self.func = func
-        self.cache = {}
+        self.func = func  # Сохраняем функцию
+        self.cache = {}   # Создаем пустой кэш
 
     def __call__(self, *args, **kwargs):
-        key = (args, tuple(kwargs.items()))
+        key = (args, tuple(kwargs.items()))  # Создаём уникальный ключ для аргументов
         if key in self.cache:
             print("Retrieving result from cache...")
-            return self.cache[key]
+            return self.cache[key]  # Возвращаем кэшированный результат
         print("Calculating the product of two numbers...")
         result = self.func(*args, **kwargs)
-        self.cache[key] = result
+        self.cache[key] = result  # Сохраняем результат в кэше
         return result
 
 @CacheResult
@@ -22,5 +22,4 @@ print(calculate_multiply(4, 5))
 print(calculate_multiply(4, 5))
 print(calculate_multiply(5, 7))
 print(calculate_multiply(5, 7))
-print(calculate_multiply(-3, 7))
-print(calculate_multiply(-3, 7))
+

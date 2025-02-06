@@ -2,17 +2,18 @@ import time
 
 class RateLimiter:
     def __init__(self, max_calls, period):
-        self.max_calls = max_calls
-        self.period = period
-        self.calls = []
+        self.max_calls = max_calls  # Максимальное количество вызовов
+        self.period = period        # Время, за которое эти вызовы можно выполнить
+        self.calls = []             # Список времени вызовов
 
     def __call__(self, func):
         def wrapper(*args, **kwargs):
-            current_time = time.time()
+            current_time = time.time()  # Текущее время
+            # Удаляем вызовы, которые вышли за пределы периода
             self.calls = [call for call in self.calls if current_time - call < self.period]
             if len(self.calls) >= self.max_calls:
                 raise Exception("Rate limit exceeded. Please try again later.")
-            self.calls.append(current_time)
+            self.calls.append(current_time)  # Записываем время вызова
             return func(*args, **kwargs)
         return wrapper
 
@@ -28,3 +29,4 @@ for _ in range(8):
         print(f"Error occurred: {e}")
 time.sleep(10)
 api_call()
+

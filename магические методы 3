@@ -1,0 +1,13 @@
+class Collection:
+    def __init__(self, people: list):
+        self.people = people.copy()  # Для избежания побочных эффектов
+
+    def __add__(self, person):
+        if not isinstance(person, Person):
+            raise TypeError("Можно добавлять только объекты Person")
+        new_people = self.people.copy()
+        new_people.append(person)
+        return Collection(new_people)
+
+    def __len__(self):
+        return len(self.people)

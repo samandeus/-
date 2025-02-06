@@ -1,0 +1,8 @@
+def square_numbers(numbers: list) -> list:
+    """Возвращает список квадратов чисел."""
+    return list(map(lambda x: x ** 2, numbers))
+
+# Тест
+input_data = [1, 2, 3, 4, 5]
+result = square_numbers(input_data)
+print(result)  # [1, 4, 9, 16, 25]
